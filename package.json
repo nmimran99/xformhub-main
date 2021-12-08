@@ -5,15 +5,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build-css": "tailwindcss build styles/globals.css -o public/globals.css"
   },
   "dependencies": {
+    "mongoose": "^6.0.15",
     "next": "12.0.7",
     "react": "17.0.2",
     "react-dom": "17.0.2"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.0",
     "eslint": "8.4.0",
-    "eslint-config-next": "12.0.7"
+    "eslint-config-next": "12.0.7",
+    "postcss": "^8.4.4",
+    "tailwindcss": "^2.2.19"
   }
 }
