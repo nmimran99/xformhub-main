@@ -81,7 +81,7 @@ export default function Points({}) {
             "
 			>
 				{points.map((po, i) => (
-					<div className="flex align-top">
+					<div className="flex align-top" key={i}>
 						<img src={po.icon} className="w-7 mr-4" />
 						<div className="py-2.5">
 							<div className="text-sm font-bold py-0.5">{po.header}</div>
