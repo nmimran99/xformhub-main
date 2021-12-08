@@ -13,7 +13,7 @@ export default function Bottom({}) {
             "
 			>
 				<div className="whitespace-nowrap">
-					Take ack <b>Control</b>
+					Take back <b>Control</b>
 				</div>
 				<div className="whitespace-nowrap">
 					And <b>Never</b> give it up
