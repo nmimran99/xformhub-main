@@ -14,6 +14,7 @@ export default function Plans({ data }) {
 			>
 				{data.map((plan, i) => (
 					<div
+						key={i}
 						className={`bg-white bg-opacity-10 rounded-lg my-4 w-min h-5/6 ${
 							i % 2 == 1 ? "ring-4 ring-blue-500" : ""
 						}`}
@@ -32,7 +33,7 @@ export default function Plans({ data }) {
 							</div>
 							<div className="mr-auto">
 								{plan.points.map((pp, i) => (
-									<div className="flex py-1.5">
+									<div className="flex py-1.5" key={i}>
 										<img src="/icons/Done.svg" className="" />
 										<div className="px-2 text-sm">{pp}</div>
 									</div>

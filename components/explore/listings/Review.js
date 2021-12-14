@@ -21,7 +21,10 @@ export default function Review({ data }) {
 			</div>
 			<div className="flex flex-wrap">
 				{data.tags.map((t, i) => (
-					<div className="text-xs rounded-sm border border-gray-300 m-1 whitespace-nowrap px-2 py-1">
+					<div
+						key={i}
+						className="text-xs rounded-sm border border-gray-300 m-1 whitespace-nowrap px-2 py-1"
+					>
 						{t}
 					</div>
 				))}

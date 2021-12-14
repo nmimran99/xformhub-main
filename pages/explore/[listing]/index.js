@@ -1,4 +1,5 @@
 import Trainer from "../../../models/trainer";
+import User from "../../../models/user";
 import Review from "../../../models/review";
 import Plan from "../../../models/plan";
 import dbConnect from "../../../utils/dbConnect";
