@@ -1,36 +1,36 @@
 const functionalities = [
 	{
-		icon: "icons/Search.svg",
+		icon: "/icons/Search.svg",
 		content: "Look for exactly what you need",
 	},
 	{
-		icon: "icons/Chat.svg",
+		icon: "/icons/Chat.svg",
 		content: "View client feedbacks and ratings",
 	},
 	{
-		icon: "icons/Wallet.svg",
+		icon: "/icons/Wallet.svg",
 		content: "Meet your budget",
 	},
 	{
-		icon: "icons/Crosshair.svg",
+		icon: "/icons/Crosshair.svg",
 		content: "Stay within your area",
 	},
 ];
 
 const points = [
 	{
-		icon: "icons/Barbell.svg",
+		icon: "/icons/Barbell.svg",
 		header: "Improve Physique and Mentality",
 		content: "Find suitable help to take your body and mind to the next step.",
 	},
 	{
-		icon: "icons/Brain.svg",
+		icon: "/icons/Brain.svg",
 		header: "Change Patterns and Habits",
 		content:
 			"Educate yourself from the most reliable sources for better quality of life.",
 	},
 	{
-		icon: "icons/Leaf.svg",
+		icon: "/icons/Leaf.svg",
 		header: "Adopt and Adapt",
 		content:
 			"Build a sustainable formula that coexists alongside your vices, proportionately.",

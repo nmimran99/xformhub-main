@@ -65,7 +65,7 @@ export default function Top({}) {
 				</div>
 
 				<img
-					src="images/mind.jpg"
+					src="/images/mind.jpg"
 					className="filter brightness-50 absolute -top-8 w-96 left-1/2 transform -translate-x-1/2 
                          md:w-1/3 md:brightness-100 md:m-0 md:right-8 md:top-0 md:-translate-x-0
                          lg:w-1/2 lg:right-4

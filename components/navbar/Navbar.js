@@ -34,14 +34,14 @@ export default function Navbar() {
 				state && "transition duration-500 bg-primary bg-opacity-100"
 			} ${
 				!scrollIsZero &&
-				"trasnsition-all duration-300 shadow-lg bg-black bg-opacity-60 border-bottom border-gray-500"
+				"trasnsition-all duration-300 shadow-lg bg-black bg-opacity-90 border-bottom border-gray-500"
 			} ${router.asPath !== "/" && "bg-black"}`}
 			id="navbar"
 		>
 			<div className="w-auto inline-flex items-center px-4">
 				<Link href="/">
 					<img
-						src="images/xfhlogo.png"
+						src="/images/xfhlogo.png"
 						className="h-8 lg:h-10 w-auto md:m-4 cursor-pointer"
 					/>
 				</Link>
@@ -66,11 +66,11 @@ export default function Navbar() {
 			></div>
 			{!state ? (
 				<button className="inline-block p-4 md:hidden" onClick={toggle}>
-					<img src="icons/menuicon.svg" className="h-7" />
+					<img src="/icons/menuicon.svg" className="h-7" />
 				</button>
 			) : (
 				<button onClick={toggle} className="inline-block p-4 md:hidden">
-					<img src="icons/close.svg" className="h-7" />
+					<img src="/icons/close.svg" className="h-7" />
 				</button>
 			)}
 		</div>

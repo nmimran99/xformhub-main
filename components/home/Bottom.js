@@ -19,7 +19,7 @@ export default function Bottom({}) {
 					And <b>Never</b> give it up
 				</div>
 			</div>
-			<img src="images/body.jpg" className="w-full" />
+			<img src="/images/body.jpg" className="w-full" />
 		</div>
 	);
 }
