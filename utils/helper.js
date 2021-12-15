@@ -1,7 +1,9 @@
 export const getAverageRating = (reviews) => {
-	return parseFloat(
-		reviews.reduce((t, r) => t + r.rating, 0) / reviews.length
-	).toFixed(1);
+	return reviews.length
+		? parseFloat(
+				reviews.reduce((t, r) => t + r.rating, 0) / reviews.length
+		  ).toFixed(1)
+		: 0;
 };
 
 export const getFullName = (data) => {

@@ -29,4 +29,4 @@ const trainerSchema = new Schema(
 );
 
 module.exports =
-	mongoose.models.Trainer || mongoose.model("Trainer", trainerSchema);
+	mongoose.models?.Trainer || mongoose.model("Trainer", trainerSchema);

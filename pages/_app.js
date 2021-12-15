@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import Layout from "../components/misc/Layout";
 import Head from "next/head";
+import useSnackbar from "../components/hooks/useSnackbar";
 
 function MyApp({ Component, pageProps }) {
 	return (

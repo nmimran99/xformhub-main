@@ -1,6 +1,7 @@
 import Navbar from "../navbar/Navbar";
 import Footer from "./Footer";
 import { FiltersContextProvider } from "../../contexts/FiltersContext";
+import { SnackbarContextProvider } from "../../contexts/SnackbarContext";
 import Head from "next/head";
 
 function Layout({ children }) {
@@ -12,8 +13,10 @@ function Layout({ children }) {
 					content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover"
 				></meta>
 			</Head>
-			<Navbar />
-			<FiltersContextProvider>{children}</FiltersContextProvider>
+			<SnackbarContextProvider>
+				<Navbar />
+				<FiltersContextProvider>{children}</FiltersContextProvider>
+			</SnackbarContextProvider>
 			<Footer />
 		</div>
 	);

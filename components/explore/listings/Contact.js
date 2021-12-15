@@ -6,7 +6,7 @@ export default function Contact({ handleClick }) {
             "
 			onClick={handleClick}
 		>
-			Contact Now
+			Connect Now
 		</button>
 	);
 }

@@ -34,16 +34,23 @@ export default function Reviews({ data, firstName }) {
 					<SlideControls handleClick={handleClick} size={12} offeset={16} />
 				</>
 			) : (
-				<div className="text-gray-300 border border-gray-300 rounded-lg p-8 w-min whitespace-nowrap text-sm bg-white bg-opacity-10 mx-3">
+				<div
+					className="text-gray-300 border border-gray-300 rounded-lg p-8 w-11/12 text-sm bg-white bg-opacity-10 mx-3
+					sm:w-min sm:whitespace-nowrap
+				"
+				>
 					<div className="">
 						This professional has no reviews at the moment.
 					</div>
 					<div className="py-3">
-						Be the first one to give {firstName} a feedback and help other{" "}
-						<br /> users in their research.{" "}
+						Be the first one to give {firstName} a feedback and help other users
+						in their research.{" "}
 					</div>
-					<button className="bg-blue-500 rounded-full text-white py-1.5 px-6 border border-gray-300 mt-2">
-						Add a Comment Now
+					<button
+						className="bg-blue-500 rounded-full text-white py-1.5 px-6 border border-gray-300 mt-2
+					"
+					>
+						Add a Review Now
 					</button>
 				</div>
 			)}

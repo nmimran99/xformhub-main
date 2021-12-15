@@ -2,7 +2,7 @@ import Carousel from "../../misc/Carousel";
 import Contact from "./Contact";
 import Introduction from "./introduction";
 
-export default function MediaSection({ data, introduction, handleContact }) {
+export default function MediaSection({ data, introduction, handleConnect }) {
 	return (
 		<div
 			className="p-2 relative
@@ -15,7 +15,7 @@ export default function MediaSection({ data, introduction, handleContact }) {
 			<Introduction data={introduction} />
 
 			<div className="hidden md:block w-full">
-				<Contact handleClick={handleContact} />
+				<Contact handleClick={handleConnect} />
 			</div>
 		</div>
 	);

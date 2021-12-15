@@ -8,6 +8,9 @@ import Contact from "../../../components/explore/listings/Contact";
 import MediaSection from "../../../components/explore/listings/MediaSection";
 import Reviews from "../../../components/explore/listings/Reviews";
 import Plans from "../../../components/explore/listings/Plans";
+import LeadModal from "../../../components/explore/listings/LeadModal";
+import { useEffect, useState } from "react";
+import useSnackbar from "../../../components/hooks/useSnackbar";
 
 const images = [
 	"https://www.ihrsa.org/uploads/SEO-Images/_1200x630_crop_center-center_82_none/4-Reasons-to-Keep-Going-to-the-Gym-During-an-Outbreak-happy-people-equipment-SEO-image.jpg?mtime=1583958779",
@@ -19,7 +22,34 @@ const images = [
 
 export default function Listing({ data }) {
 	const { trainerData, reviews, plans } = data;
+	const [leadModal, setLeadModal] = useState(false);
+	const [offer, setOffer] = useState(null);
+	const { snackbar } = useSnackbar();
 	const tdata = trainerData[0];
+
+	useEffect(() => {
+		if (!offer) return;
+		setLeadModal(true);
+	}, [offer]);
+
+	useEffect(() => {
+		document.querySelector("body").style.overflow = leadModal
+			? "hidden"
+			: "auto";
+	}, [leadModal]);
+
+	const handleConnect = () => {
+		setLeadModal(true);
+	};
+
+	const handleChooseOffer = (data) => (event) => {
+		setOffer(data);
+	};
+
+	const handleClose = () => {
+		setOffer(null);
+		setLeadModal(false);
+	};
 
 	return (
 		<div
@@ -35,11 +65,27 @@ export default function Listing({ data }) {
 			sm:transform sm:translate-x-1/2 sm:right-1/2 
 			md:hidden"
 			>
-				<Contact />
+				<Contact handleClick={handleConnect} />
 			</div>
-			<MediaSection data={images} introduction={tdata.introduction} />
+			<MediaSection
+				data={images}
+				introduction={tdata.introduction}
+				handleConnect={handleConnect}
+			/>
 			<Reviews data={reviews} firstName={trainerData.firstName} />
-			<Plans data={plans} />
+			<Plans data={plans} handleChooseOffer={handleChooseOffer} />
+			{leadModal && (
+				<LeadModal handleClose={handleClose} trainer={tdata} offer={offer} />
+			)}
+			{snackbar.result && (
+				<div className="h-16 w-full z-30 fixed bottom-0 left-0 bg-green-600 rounded-md border border-gray-300 text-center flex items-center justify-center text-sm">
+					<img
+						src="/icons/Done.svg"
+						className="w-8 h-8 rounded-full bg-white bg-opacity-10 p-2 mr-3"
+					/>
+					<div className="">{snackbar.text}</div>
+				</div>
+			)}
 		</div>
 	);
 }
@@ -52,7 +98,6 @@ export const getStaticProps = async (context) => {
 	const reviews = await Review.find({ trainer: listing })
 		.populate({
 			path: "user",
-			model: "User",
 		})
 		.lean();
 	const plans = await Plan.find({ trainer: listing }).sort("price").lean();

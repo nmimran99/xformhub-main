@@ -1,4 +1,4 @@
-export default function Plans({ data }) {
+export default function Plans({ data, handleChooseOffer }) {
 	return (
 		<div
 			className="my-8 w-full relative
@@ -39,7 +39,10 @@ export default function Plans({ data }) {
 									</div>
 								))}
 							</div>
-							<button className="px-6 py-1.5 text-md text-white bg-blue-500 border border-gray-300 mt-16 rounded-full">
+							<button
+								className="px-6 py-1.5 text-md text-white bg-blue-500 border border-gray-300 mt-16 rounded-full"
+								onClick={handleChooseOffer(plan)}
+							>
 								Choose Offer
 							</button>
 						</div>

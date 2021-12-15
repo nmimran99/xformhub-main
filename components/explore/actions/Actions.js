@@ -33,7 +33,7 @@ export default function Actions({}) {
 					<Filters updateFilters={updateFilters} filters={filters} />
 				</div>
 			</div>
-			<div className="fixed bottom-8 md:hidden">
+			<div className="fixed z-50 bottom-8 md:hidden">
 				<FilterMobileButton toggle={toggle} />
 			</div>
 			{state && (

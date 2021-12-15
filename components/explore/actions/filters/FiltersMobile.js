@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ApplyMobileFilters from "./ApplyMobileFilters";
 import Filters from "./Filters";
+import FormControls from "./FormControls";
 
 export default function FiltersMobile({ updateFilters, toggle, filters }) {
 	const [tempFilters, setTempFilters] = useState(filters);
@@ -29,7 +29,12 @@ export default function FiltersMobile({ updateFilters, toggle, filters }) {
 						toggle={toggle}
 						filters={filters}
 					/>
-					<ApplyMobileFilters toggle={toggle} handleApply={handleApply} />
+					<FormControls
+						toggle={toggle}
+						handleApply={handleApply}
+						applyText="Apply Filters"
+						closeText="Cancel"
+					/>
 				</div>
 			</div>
 		</div>
