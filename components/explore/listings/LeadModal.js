@@ -123,7 +123,7 @@ export default function LeadModal({ handleClose, trainer, offer }) {
 		const res = await axios.post("/api/leads/lead", {
 			...details,
 			trainer: trainer._id,
-			planId: offer._id || null,
+			planId: offer ? offer._id : null,
 		});
 
 		setSnackbar({
