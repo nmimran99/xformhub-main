@@ -53,7 +53,7 @@ const sendLeadEmail = async (savedLead) => {
 				email: savedLead.email,
 				expertise: savedLead.expertise.join(", "),
 				planId: savedLead.planId || "No Plan",
-				planName: planDoc.title || "No Plan",
+				planName: planDoc?.title || "No Plan",
 				trainerId: savedLead.trainer || "Trainer details were not found",
 				trainerName:
 					getFullName(trainerDoc) || "Trainer details were not found",

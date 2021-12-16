@@ -1,10 +1,11 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getFullName } from "../../../utils/helper";
 import cookieCutter from "cookie-cutter";
 import useSnackbar from "../../hooks/useSnackbar";
 import Modal from "../../misc/Modal";
 import FormControls from "../actions/filters/FormControls";
 import axios from "axios";
+import { getCookies, setCookies } from "../../../utils/helper/cookies";
 
 const MAX_LENGTH_TEXTAREA = 250;
 
@@ -44,6 +45,14 @@ export default function AddReviewModal({
 	});
 	const { setSnackbar } = useSnackbar();
 
+	useEffect(() => {
+		let info = getCookies(["firstName", "lastName", "email"]);
+		setDetails({
+			...details,
+			...info,
+		});
+	}, []);
+
 	const handleChange = (field) => (e) => {
 		setDetails({
 			...details,
@@ -70,9 +79,11 @@ export default function AddReviewModal({
 			trainer: trainer._id,
 		});
 
-		cookieCutter.set(firstName, details.firstName);
-		cookieCutter.set(lastName, details.lastName);
-		cookieCutter.set(email, details.email);
+		setCookies({
+			firstName: details.firstName,
+			lastName: details.lastName,
+			email: details.email,
+		});
 
 		setSnackbar({
 			result: "success",
@@ -154,10 +165,10 @@ export default function AddReviewModal({
 						{[5, 4, 3, 2, 1].map((i) => (
 							<button
 								className={`text-5xl ${
-									details.rating >= i + 1 ? "text-yellow-200" : "text-gray-600"
+									details.rating >= i ? "text-yellow-200" : "text-gray-600"
 								}`}
 								key={i}
-								onClick={handleChangeRating(i + 1)}
+								onClick={handleChangeRating(i)}
 							>
 								&#9734;
 							</button>

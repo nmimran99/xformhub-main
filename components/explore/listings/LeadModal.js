@@ -43,7 +43,6 @@ export default function LeadModal({ handleClose, trainer, offer }) {
 		expertise: [],
 	});
 
-	console.log(details);
 	const { setSnackbar } = useSnackbar();
 	const [errors, setErrors] = useState([]);
 
