@@ -43,8 +43,9 @@ export default function Listings({}) {
 				<button
 					onClick={fetchNextPage}
 					className="text-white bg-blue-600 rounded-md py-2 px-6 text-sm border border-white"
+					disabled={isFetchingInitialData}
 				>
-					Load more...
+					{isFetchingInitialData ? "...Loading" : "Load more..."}
 				</button>
 			)}
 		</div>
