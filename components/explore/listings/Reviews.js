@@ -72,12 +72,3 @@ export default function Reviews({ data, firstName, openAddReview, cookies }) {
 		</div>
 	);
 }
-
-export const getInitialPros = (ctx) => {
-	const { cookies } = ctx.req;
-	return {
-		props: {
-			cookies,
-		},
-	};
-};

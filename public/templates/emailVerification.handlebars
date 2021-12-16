@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   
+
+    <style type="text/css">
+
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;1,400&display=swap");
+      
+   
+         * {
+            direction: ltr; 
+            color: black;
+            font-family: system-ui;
+        }
+        
+        
+        .outer-container {
+            width: 100%;
+        }
+
+        .logo-container {
+            width: 200px;
+        }
+        
+        .data-row {
+            padding: 5px 0;   
+        }
+
+        .data-content {
+            padding: 0 5px;
+            font-weight: 700;
+        }
+
+        .header {
+            font-size: 22px;
+        }
+        
+        .container {
+            padding: 24px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            margin: 10px 0;
+            width: fit-content;
+        }
+
+        .verifyButton {
+            background: #2563EB;
+            width: fit-content;
+            padding: 7px 20px;
+            border-radius: 10px; 
+            margin: 10px 0;
+            line-height: 1.3
+        }
+
+        .verifyLink {
+            color: white;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .textRow {
+            font-size: 14px;
+        }
+
+        .signature {
+            font-size: 14px
+        }
+    </style>
+</head>
+
+<body style="padding: 20px;">
+    <div class="logo-container">
+        <img src="https://xfhstaticstorage.blob.core.windows.net/images/xfhogogray.png" style="display: block;" width="200" height="50" title="Logo" alt="XFormHub"/>
+    </div>
+    <div>
+        <div class="textRow">Hi {{ fullName }},</div>
+        <div class="textRow">I wanted to thank you for using XFormHub.com.</div>
+        <div class="textRow">Please verify your Email address.</div>
+        <div class="verifyButton"><a class="verifyLink" href={{ link }} >Verify Email Address</a></div>
+        <div class="container">
+            <div style="font-weight: 700;">Why do we require verification?</div>
+            <div class="textRow">Our team's goal is to provide the most relevant data and feedbacks regarding professionals.</div>
+            <div class="textRow">By verifying your email, we increase the integrity level of the feedback, resulting in high quality reviews.</div>
+            <br />
+            <div class="textRow container">If you have any questions, please submit them on <a href="https://www.xformhub.com/contact">www.xformhub.com/contact</a> and we will get back to you as soon as possible.</div>
+        </div>
+        
+        <div class="textRow">Thank you for your support,</div>
+        <div class="signature">
+            <div>Niv Mimran,</div>
+            <div>Customer Support</div>
+            <div>niv@xformhub.com</div>
+            <div>+1-437-246-6024</div>
+        </div>
+        
+    </div>
+    
+</body>
+
+</html>

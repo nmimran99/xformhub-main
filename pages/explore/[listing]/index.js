@@ -22,7 +22,7 @@ const images = [
 ];
 
 export default function Listing({ data }) {
-	const { trainerData, reviews, plans } = data;
+	let { trainerData, reviews, plans } = data;
 	const [leadModal, setLeadModal] = useState(false);
 	const [reviewModal, setReviewModal] = useState(false);
 	const [offer, setOffer] = useState(null);
@@ -35,10 +35,9 @@ export default function Listing({ data }) {
 	}, [offer]);
 
 	useEffect(() => {
-		document.querySelector("body").style.overflow = leadModal
-			? "hidden"
-			: "auto";
-	}, [leadModal]);
+		document.querySelector("body").style.overflow =
+			leadModal || reviewModal ? "hidden" : "auto";
+	}, [leadModal, reviewModal]);
 
 	const handleConnect = () => {
 		setLeadModal(true);
@@ -57,7 +56,6 @@ export default function Listing({ data }) {
 		setLeadModal(false);
 		setReviewModal(false);
 	};
-
 	return (
 		<div
 			className="text-white mt-16 w-full

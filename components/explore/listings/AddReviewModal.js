@@ -30,6 +30,23 @@ const dataFields = [
 	},
 ];
 
+const tags = [
+	"Responsive",
+	"Caring",
+	"Flexible",
+	"Detail Oriented",
+	"Kind",
+	"Educating",
+	"Motivating",
+	"Understanding",
+	"Creative",
+	"Dependable",
+	"Friendly",
+	"Patient",
+	"Positive",
+	"Nurturing",
+];
+
 export default function AddReviewModal({
 	trainer,
 	handleAddReview,
@@ -42,6 +59,7 @@ export default function AddReviewModal({
 		email: "",
 		rating: 0,
 		content: "",
+		tags: [],
 	});
 	const { setSnackbar } = useSnackbar();
 
@@ -74,7 +92,7 @@ export default function AddReviewModal({
 		let isValid = await validateFields();
 		if (!isValid) return;
 
-		const res = await axios.post("/api/reviews/review", {
+		const savedReview = await axios.post("/api/reviews/review", {
 			...details,
 			trainer: trainer._id,
 		});
@@ -91,6 +109,15 @@ export default function AddReviewModal({
 		});
 
 		handleClose();
+	};
+
+	const handleClickTag = (tag) => (event) => {
+		setDetails({
+			...details,
+			tags: details.tags.find((t) => t == tag)
+				? details.tags.filter((t) => t !== tag)
+				: [...details.tags, tag],
+		});
 	};
 
 	const validateFields = async () => {
@@ -149,71 +176,105 @@ export default function AddReviewModal({
 			>
 				<button
 					className="absolute right-8 top-8
-					md:top-4
-					xl:top-8
 				"
 					onClick={handleClose}
 				>
 					<img src="/icons/close.svg" className="w-8" />
 				</button>
-				<div className="p-4 text-3xl mt-24">
-					Give {getFullName(trainer)} a feedback
-				</div>
-
-				<div className="">
-					<div className="flex w-5/6 justify-evenly mx-auto">
-						{[5, 4, 3, 2, 1].map((i) => (
-							<button
-								className={`text-5xl ${
-									details.rating >= i ? "text-yellow-200" : "text-gray-600"
-								}`}
-								key={i}
-								onClick={handleChangeRating(i)}
-							>
-								&#9734;
-							</button>
-						))}
+				<div
+					className="p-4 h-screen overflow-y-auto
+					md:h-full md:overflow-y-auto md:p-8
+				"
+				>
+					<div className="p-4 text-3xl mt-12">
+						Give {getFullName(trainer)} a feedback
 					</div>
-					<Error field={"rating"} />
-				</div>
 
-				<div className="p-4">
-					{dataFields.map((field, i) => (
-						<div className="my-3 mr-3 w-min" key={i}>
-							<div className="text-xs text-gray-300 py-1">{field.label}</div>
-							<input
-								type="text"
-								className={`rounded-full h-8 w-60 text-xs px-4 text-black  ${
-									errors && getError(field.name) && "border-2 border-red-600"
-								}`}
-								value={details[field.name]}
-								onChange={handleChange(field.name)}
-								placeholder={field.placeHolder}
-							/>
-							<Error field={field.name} />
+					<div className="">
+						<div className="flex w-5/6 justify-evenly mx-auto">
+							{[1, 2, 3, 4, 5].map((i) => (
+								<button
+									className={`text-3xl text-gray-600`}
+									key={i}
+									onClick={handleChangeRating(i)}
+								>
+									{details.rating >= i ? `\u2B50` : `\u2606`}
+								</button>
+							))}
 						</div>
-					))}
-					<div className="my-3 mr-3 w-full">
-						<div className="flex justify-between">
-							<div className="text-xs text-gray-300 py-1">Feedback</div>
-							<div className="flex text-xs px-2 py-1 text-gray-300">
-								{MAX_LENGTH_TEXTAREA - (details?.content?.length || 0)}
-								<div className="px-1">Characters left</div>
+						<Error field={"rating"} />
+					</div>
+
+					<div
+						className="p-4 mb-40
+					md:flex md:flex-wrap
+					"
+					>
+						{dataFields.map((field, i) => (
+							<div className="my-3 mr-3 w-min" key={i}>
+								<div className="text-xs text-gray-300 py-1">{field.label}</div>
+								<input
+									type="text"
+									className={`rounded-full h-8 w-60 text-xs px-4 text-black  ${
+										errors && getError(field.name) && "border-2 border-red-600"
+									}`}
+									value={details[field.name]}
+									onChange={handleChange(field.name)}
+									placeholder={field.placeHolder}
+								/>
+								<Error field={field.name} />
+							</div>
+						))}
+						<div className="my-3 mr-3 w-full">
+							<div className="flex justify-between">
+								<div className="text-xs text-gray-300 py-1">Feedback</div>
+								<div className="flex text-xs px-2 py-1 text-gray-300">
+									{MAX_LENGTH_TEXTAREA - (details?.content?.length || 0)}
+									<div className="px-1">Characters left</div>
+								</div>
+							</div>
+
+							<textarea
+								rows={6}
+								type="text"
+								className={`rounded-xl w-full text-xs p-4 text-black ${
+									errors && getError("content") && "border-2 border-red-600"
+								}`}
+								value={details.content}
+								onChange={handleChange("content")}
+								placeholder={"How was your experience?"}
+								maxLength={MAX_LENGTH_TEXTAREA}
+							/>
+							<Error field={"content"} />
+						</div>
+						<div className="mt-3 mr-3 w-full">
+							<div className="">
+								<div className="text-xs text-gray-300 py-1">Tags</div>
+							</div>
+							<div className=" flex flex-wrap">
+								{tags.map((t, i) => (
+									<button
+										className={`text-xs border border-gray-300 rounded-sm py-1 px-4 m-1 ${
+											details.tags.find((tag) => t === tag)
+												? "bg-blue-600 text-white"
+												: "bg-gray-400 bg-opacity-50 text-gray-300"
+										}`}
+										onClick={handleClickTag(t)}
+										key={i}
+										disabled={
+											!details.tags.find((tag) => tag === t) &&
+											details.tags.length === 5
+										}
+									>
+										{t}
+									</button>
+								))}
+							</div>
+							<div className="text-xs text-gray-400 py-1">
+								Please choose up to 3 tags that describe {trainer.firstName} the
+								best
 							</div>
 						</div>
-
-						<textarea
-							rows={6}
-							type="text"
-							className={`rounded-xl w-full text-xs p-4 text-black ${
-								errors && getError("content") && "border-2 border-red-600"
-							}`}
-							value={details.content}
-							onChange={handleChange("content")}
-							placeholder={"How was your experience?"}
-							maxLength={MAX_LENGTH_TEXTAREA}
-						/>
-						<Error field={"content"} />
 					</div>
 				</div>
 

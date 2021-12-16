@@ -15,10 +15,11 @@ export default function Review({ data }) {
 					</div>
 				</div>
 
-				<div className="w-64 px-2 py-1">
+				<div className="w-72 px-2 py-1">
 					<div className="text-sm py-1 font-semibold text-gray-200">
 						{getFullName(data.user)}
 					</div>
+					<div className="text-xs text-gray-300">{data.createdAt}</div>
 					<div className="text-xs font-light h-40">{data.description}</div>
 				</div>
 			</div>
