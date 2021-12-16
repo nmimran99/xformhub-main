@@ -11,7 +11,7 @@ export default function GeneralDetails({ data, reviews }) {
 			<div className="relative">
 				<img
 					src={data.avatar}
-					className="w-48 rounded-full my-6 ring-1 ring-blue-500 ring-offset-2 ring-offset-transparent border-2 border-white"
+					className="w-48 rounded-full my-6 ring-1 ring-blue-600 ring-offset-2 ring-offset-transparent border-2 border-white"
 				/>
 				<img
 					src="/icons/Verified.svg"

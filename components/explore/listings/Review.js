@@ -5,7 +5,10 @@ export default function Review({ data }) {
 		<div className="border border-gray-400 rounded-lg m-2 p-2 flex flex-col justify-between bg-white bg-opacity-10">
 			<div className="flex">
 				<div className="flex flex-col items-center">
-					<img src={data.user.avatar} className="w-12 h-12 rounded-full m-2" />
+					<img
+						src={data.user.avatar || "/icons/UserCircle.svg"}
+						className="w-12 h-12 rounded-full m-2"
+					/>
 					<div className="flex">
 						<img src="/icons/star.svg" className="w-5" />
 						<div className="text-gray-200 text-sm px-1">{data.rating}</div>

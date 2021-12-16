@@ -49,7 +49,7 @@ export default function FilterLocation({ handleUpdate, initialValue }) {
 					className="text-black text-xs font-medium px-2 w-52 focus:outline-none h-5/6 my-auto"
 					value={value || searchText}
 				/>
-				<input className="hidden" value={searchText} />
+				<input className="hidden" value={searchText} onChange={() => {}} />
 			</div>
 
 			{!!suggestions.length && (

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   
+
+    <style type="text/css">
+
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;1,400&display=swap");
+      
+   
+         * {
+            direction: ltr; 
+            color: black;
+            font-family: system-ui;
+        }
+        
+        
+        .outer-container {
+            width: 100%;
+        }
+
+        .logo-container {
+            width: 200px;
+        }
+        
+        .data-row {
+            padding: 5px 0;   
+        }
+
+        .data-content {
+            padding: 0 5px;
+            font-weight: 700;
+        }
+
+        .header {
+            font-size: 22px;
+        }
+        
+        .container {
+            padding: 24px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+
+    </style>
+</head>
+
+<body class='outer-container'>
+    <div class="logo-container">
+        <img src="https://xfhstaticstorage.blob.core.windows.net/images/xfhlogo.png" style="display: block;" width="200" height="50" title="Logo" alt="XFormHub"/>
+    </div>
+    <div class="container">
+        <div class="header">
+            Lead Information:
+        </div>
+        <div class="data-row">
+            <div class="data-label">Lead Id: </div>
+            <div class="data-content">{{ leadId }}</div>
+        <div class="data-row">
+            <div class="data-label">Full Name:</div>
+            <div class="data-content">{{ fullName }}</div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">Email: </div>
+            <div class="data-content">{{ email }}</div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">Phone number: </div>
+            <div class="data-content">{{ phoneNumber }}</div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">Expertise: </div>
+            <div class="data-content">{{ expertise }}</div>
+        </div>
+    </div>
+    
+    <br/><br/>
+    <div class="container">
+        <div class="header">
+            Trainer Information:
+        </div>
+        <div class="data-row">
+            <div class="data-label">trainer Id: </div>
+            <div class="data-content">{{ trainerId }}</div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">trainer Name: </div>
+            <div class="data-content">{{ trainerName }}</div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="header">
+            Plan Information:
+        </div>
+        <div class="data-row">
+            <div class="data-label">Plan Id: </div>
+            <div class="data-content">{{ planId }}</div>
+        </div>
+        <div class="data-row">
+            <div class="data-label">Plan Name: </div>
+            <div class="data-content">{{ planName }}</div>
+        </div>
+    </div>
+    
+</body>
+
+</html>

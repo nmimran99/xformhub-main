@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getFullName, getCity } from "../../../utils/helper";
+import { getFullName, getCity, getAverageRating } from "../../../utils/helper";
 
 export default function ListingItem({ data, key }) {
 	return (
@@ -12,7 +12,7 @@ export default function ListingItem({ data, key }) {
 				<div className="relative">
 					<img
 						src={`https://picsum.photos/500/500?random=${key}`}
-						className="w-48 h-48 rounded-full my-6 border-2 border-white ring-4 ring-blue-500"
+						className="w-48 h-48 rounded-full my-6 border-2 border-white ring-4 ring-blue-600"
 					/>
 					{data.isVerified && (
 						<img
@@ -26,11 +26,11 @@ export default function ListingItem({ data, key }) {
 					<div className="text-xl pt-3">{getFullName(data)}</div>
 					<div className="">{getCity(data)}</div>
 					<div className="flex content-center w-max mx-auto text-sm border border-gray-500 rounded-full py-2 px-8 my-4">
-						{data.reviews.length ? (
+						{data.reviews?.length ? (
 							<>
 								<img src="/icons/star.svg" className="w-5" />
 								<div className="my-auto px-1">
-									{parseFloat(data.avgRating).toFixed(1)}
+									{getAverageRating(data.reviews)}
 								</div>
 								<div className="my-auto">{`(${data.reviews.length} Reviews)`}</div>
 							</>
@@ -40,7 +40,7 @@ export default function ListingItem({ data, key }) {
 					</div>
 					<div className="h-28">
 						<div className="flex flex-wrap gap-2 justify-center my-4 w-72 ">
-							{data.expertise.map((e, i) => (
+							{data.expertise?.map((e, i) => (
 								<div
 									className="border border-gray-200 rounded-md px-4 py-1.5 text-xs whitespace-nowrap w-min h-8"
 									key={i}

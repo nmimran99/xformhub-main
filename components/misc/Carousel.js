@@ -33,7 +33,7 @@ export default function Carousel({ images }) {
 									key={i}
 									className={`mx-1 w-28 h-14 ${
 										mainImage === im
-											? "border-2 border-blue-500 rounded-sm w-28"
+											? "border-2 border-blue-600 rounded-sm w-28"
 											: ""
 									}`}
 									onClick={() => setMainImage(im)}

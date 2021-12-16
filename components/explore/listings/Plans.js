@@ -16,13 +16,13 @@ export default function Plans({ data, handleChooseOffer }) {
 					<div
 						key={i}
 						className={`bg-white bg-opacity-10 rounded-lg my-4 w-min h-5/6 ${
-							i % 2 == 1 ? "ring-4 ring-blue-500" : ""
+							i % 2 == 1 ? "ring-4 ring-blue-600" : ""
 						}`}
 					>
 						<div
 							className={`${
 								i % 2 == 1
-									? "bg-blue-500 rounded-t-sm"
+									? "bg-blue-600 rounded-t-sm"
 									: "bg-gray-300 rounded-t-lg"
 							} w-80 h-2 `}
 						></div>
@@ -40,7 +40,7 @@ export default function Plans({ data, handleChooseOffer }) {
 								))}
 							</div>
 							<button
-								className="px-6 py-1.5 text-md text-white bg-blue-500 border border-gray-300 mt-16 rounded-full"
+								className="px-6 py-1.5 text-md text-white bg-blue-600 border border-gray-300 mt-16 rounded-full"
 								onClick={handleChooseOffer(plan)}
 							>
 								Choose Offer

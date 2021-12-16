@@ -9,7 +9,7 @@ export default function FiltersMobile({ updateFilters, toggle, filters }) {
 		setTempFilters(data);
 	};
 
-	const handleApply = () => {
+	const handleSubmit = () => {
 		updateFilters(tempFilters);
 		toggle();
 	};
@@ -31,7 +31,7 @@ export default function FiltersMobile({ updateFilters, toggle, filters }) {
 					/>
 					<FormControls
 						toggle={toggle}
-						handleApply={handleApply}
+						handleSubmit={handleSubmit}
 						applyText="Apply Filters"
 						closeText="Cancel"
 					/>

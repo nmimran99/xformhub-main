@@ -4,11 +4,14 @@ import Trainer from "../../models/trainer";
 export default async function handler(req, res) {
 	await dbConnect();
 
-	console.log(buildFiltersQuery(req.query));
+	let page = Number(req.query.page);
+
 	let data = await Trainer.aggregate([
 		{
 			$match: buildFiltersQuery(req.query),
 		},
+		{ $skip: 6 * page },
+		{ $limit: 6 },
 		{
 			$lookup: {
 				from: "reviews",
@@ -32,11 +35,13 @@ export default async function handler(req, res) {
 		},
 	]);
 
+	console.log(data);
 	res.status(200).json(data);
 }
 
 const buildFiltersQuery = (filters) => {
 	delete filters.page;
+
 	let res = {};
 	Object.entries(filters).forEach((f) => {
 		let [name, value] = f;

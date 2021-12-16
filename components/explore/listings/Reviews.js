@@ -1,14 +1,26 @@
 import { getFullName } from "../../../utils/helper";
+import { getCookie } from "../../../utils/helper/cookies";
 import Review from "./Review";
 import SlideControls from "./SlideControls";
+import cookieCutter from "cookie-cutter";
 
-export default function Reviews({ data, firstName }) {
+export default function Reviews({ data, firstName, openAddReview, cookies }) {
 	const handleClick = (dir) => (event) => {
 		let reviewDoc = document.getElementById("reviews");
 		reviewDoc.scrollTo({
 			left: reviewDoc.scrollLeft + (dir === "left" ? -300 : 300),
 			behavior: "smooth",
 		});
+	};
+
+	const CanComment = ({ children }) => {
+		console.log(cookies);
+		let email = false;
+		if (!email) return children;
+		if (data.find((r) => r.user.email === email)) {
+			return null;
+		}
+		return children;
 	};
 
 	return (
@@ -46,14 +58,26 @@ export default function Reviews({ data, firstName }) {
 						Be the first one to give {firstName} a feedback and help other users
 						in their research.{" "}
 					</div>
-					<button
-						className="bg-blue-500 rounded-full text-white py-1.5 px-6 border border-gray-300 mt-2
-					"
-					>
-						Add a Review Now
-					</button>
 				</div>
 			)}
+			<CanComment>
+				<button
+					className="bg-blue-600 rounded-full text-white py-1.5 px-6 border border-gray-300 mt-2 mx-2 text-sm
+						"
+					onClick={openAddReview}
+				>
+					Add a Review Now
+				</button>
+			</CanComment>
 		</div>
 	);
 }
+
+export const getInitialPros = (ctx) => {
+	const { cookies } = ctx.req;
+	return {
+		props: {
+			cookies,
+		},
+	};
+};

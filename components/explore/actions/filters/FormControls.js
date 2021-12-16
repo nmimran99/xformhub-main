@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 export default function FormControls({
 	toggle,
-	handleApply,
+	handleSubmit,
 	applyText,
 	closeText,
 }) {
@@ -16,7 +16,7 @@ export default function FormControls({
 			<div className="h-full flex text-white text-sm justify-evenly">
 				<button
 					className="bg-blue-600 text-center w-1/2 pb-4 md:rounded-bl-xl md:pb-0"
-					onClick={handleApply}
+					onClick={handleSubmit}
 				>
 					{applyText}
 				</button>
