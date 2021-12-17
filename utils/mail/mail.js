@@ -1,5 +1,6 @@
 import path from "path";
 import nodemailer from "nodemailer";
+import getConfig from "next/config";
 const hbs = require("nodemailer-express-handlebars");
 
 export const sendMail = async (mailOptions) => {
@@ -51,7 +52,12 @@ export const createMailTransporter = async () => {
 						layoutsDir: "templates",
 						defaultLayout: "", //set this one empty and provide your template below,
 					},
-					viewPath: "./public/templates",
+					viewPath: path
+						.join(
+							getConfig().serverRuntimeConfig.PROJECT_ROOT,
+							"/public/templates"
+						)
+						.toString(),
 				})
 			);
 			resolve(transport);

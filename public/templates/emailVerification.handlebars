@@ -15,7 +15,6 @@
             font-family: system-ui;
         }
         
-        
         .outer-container {
             width: 100%;
         }
@@ -51,11 +50,12 @@
             padding: 7px 20px;
             border-radius: 10px; 
             margin: 10px 0;
-            line-height: 1.3
+            line-height: 1.3;
+             color: white;
         }
 
         .verifyLink {
-            color: white;
+           
             text-decoration: none;
             white-space: nowrap;
         }
@@ -78,7 +78,7 @@
         <div class="textRow">Hi {{ fullName }},</div>
         <div class="textRow">I wanted to thank you for using XFormHub.com.</div>
         <div class="textRow">Please verify your Email address.</div>
-        <div class="verifyButton"><a class="verifyLink" href={{ link }} >Verify Email Address</a></div>
+        <a href={{ link }} class="verifyLink" ><div class="verifyButton">Verify Email Address</div></a>
         <div class="container">
             <div style="font-weight: 700;">Why do we require verification?</div>
             <div class="textRow">Our team's goal is to provide the most relevant data and feedbacks regarding professionals.</div>
