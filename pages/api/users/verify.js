@@ -8,13 +8,13 @@ export default async function handler(req, res) {
 	const { method } = req;
 	await dbConnect();
 
-	// if (method === "POST") {
-	// 	let result = await sendUserVerification({ ...req.query });
-	// 	if (result) {
-	// 		res.status(200).json({ result });
-	// 	}
-	// 	res.status(500).json({ result });
-	// }
+	if (method === "POST") {
+		let result = await sendUserVerification({ ...req.query });
+		if (result) {
+			res.status(200).json({ result });
+		}
+		res.status(500).json({ result });
+	}
 
 	if (method === "GET") {
 		const { userId } = req.query;
