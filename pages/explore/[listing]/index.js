@@ -27,7 +27,6 @@ export default function Listing({ data }) {
 	const [reviewModal, setReviewModal] = useState(false);
 	const [offer, setOffer] = useState(null);
 	const { snackbar } = useSnackbar();
-	const tdata = trainerData[0];
 
 	useEffect(() => {
 		if (!offer) return;
@@ -56,6 +55,7 @@ export default function Listing({ data }) {
 		setLeadModal(false);
 		setReviewModal(false);
 	};
+
 	return (
 		<div
 			className="text-white mt-16 w-full
@@ -64,7 +64,7 @@ export default function Listing({ data }) {
 			xl:w-3/4
 		"
 		>
-			<GeneralDetails data={tdata} reviews={reviews} />
+			<GeneralDetails data={trainerData} reviews={reviews} />
 			<div
 				className="w-screen h-16 fixed bottom-0 z-10
 			sm:transform sm:translate-x-1/2 sm:right-1/2 
@@ -74,7 +74,7 @@ export default function Listing({ data }) {
 			</div>
 			<MediaSection
 				data={images}
-				introduction={tdata.introduction}
+				introduction={trainerData.introduction}
 				handleConnect={handleConnect}
 			/>
 			<Reviews
@@ -84,10 +84,14 @@ export default function Listing({ data }) {
 			/>
 			<Plans data={plans} handleChooseOffer={handleChooseOffer} />
 			{leadModal && (
-				<LeadModal handleClose={handleClose} trainer={tdata} offer={offer} />
+				<LeadModal
+					handleClose={handleClose}
+					trainer={trainerData}
+					offer={offer}
+				/>
 			)}
 			{reviewModal && (
-				<AddReviewModal trainer={tdata} handleClose={handleClose} />
+				<AddReviewModal trainer={trainerData} handleClose={handleClose} />
 			)}
 			{snackbar.result && (
 				<div className="h-16 w-full z-30 fixed bottom-0 left-0 bg-green-600 rounded-md border border-gray-300 text-center flex items-center justify-center text-sm">
@@ -102,11 +106,25 @@ export default function Listing({ data }) {
 	);
 }
 
-export const getStaticProps = async (context) => {
-	let listing = context.params.listing;
+// export const getStaticPaths = async () => {
+// 	await dbConnect();
+// 	const trainers = await Trainer.find({}, "_id");
+// 	let paths = trainers.map((t) => ({
+// 		params: {
+// 			listing: t._id.toString(),
+// 		},
+// 	}));
+// 	return {
+// 		paths,
+// 		fallback: false,
+// 	};
+// };
+
+export const getServerSideProps = async ({ params }) => {
+	let listing = params.listing;
 
 	await dbConnect();
-	const trainerData = await Trainer.find({ _id: listing }).lean();
+	const trainerData = await Trainer.findOne({ _id: listing }).lean();
 	const reviews = await Review.find({ trainer: listing })
 		.populate({
 			path: "user",
@@ -116,7 +134,7 @@ export const getStaticProps = async (context) => {
 	const plans = await Plan.find({ trainer: listing }).sort("price").lean();
 
 	const data = {
-		trainerData: trainerData.map((td) => ({ ...td, _id: td._id.toString() })),
+		trainerData: { ...trainerData, _id: trainerData._id.toString() },
 		reviews: reviews.map((r) => ({
 			_id: r._id.toString(),
 			user: {
@@ -139,20 +157,5 @@ export const getStaticProps = async (context) => {
 		props: {
 			data,
 		},
-	};
-};
-
-export const getStaticPaths = async () => {
-	await dbConnect();
-	const trainers = await Trainer.find({}, "_id");
-	let paths = trainers.map((t) => ({
-		params: {
-			listing: t._id.toString(),
-		},
-	}));
-
-	return {
-		paths,
-		fallback: false,
 	};
 };

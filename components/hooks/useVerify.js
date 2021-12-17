@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export default function useVerify(userId) {
+export default (userId) => {
 	const [isVerified, setIsVerified] = useState(false);
 	const [user, setUser] = useState(null);
 
@@ -20,4 +20,4 @@ export default function useVerify(userId) {
 	};
 
 	return { isVerified, user };
-}
+};
