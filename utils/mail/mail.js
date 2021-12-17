@@ -48,9 +48,9 @@ export const createMailTransporter = async () => {
 				"compile",
 				hbs({
 					viewEngine: {
-						partialsDir: path.resolve("./public/templates"), //your path, views is a folder inside the source folder
+						partialsDir: path.resolve("./public/templates"),
 						layoutsDir: path.resolve("./public/templates"),
-						defaultLayout: "", //set this one empty and provide your template below,
+						defaultLayout: "",
 					},
 					viewPath: path.resolve("./public/templates"),
 				})
