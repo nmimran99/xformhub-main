@@ -106,21 +106,7 @@ export default function Listing({ data }) {
 	);
 }
 
-export const getStaticPaths = async () => {
-	await dbConnect();
-	const trainers = await Trainer.find({}, "_id");
-	let paths = trainers.map((t) => ({
-		params: {
-			listing: t._id.toString(),
-		},
-	}));
-	return {
-		paths,
-		fallback: false,
-	};
-};
-
-export const getStaticProps = async ({ params }) => {
+export const getServerSideProps = async ({ params }) => {
 	let listing = params.listing;
 
 	await dbConnect();
