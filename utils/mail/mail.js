@@ -39,8 +39,8 @@ export const createMailTransporter = async () => {
 			let transport = nodemailer.createTransport({
 				service: "Gmail",
 				auth: {
-					user: "nmimran99@gmail.com",
-					pass: "G0nxkC9kpFp",
+					user: "",
+					pass: "",
 				},
 			});
 

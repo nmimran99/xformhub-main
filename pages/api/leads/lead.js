@@ -26,7 +26,7 @@ export default async function handler(req, res) {
 
 		try {
 			const savedLead = await lead.save();
-			sendLeadEmail(savedLead);
+			// sendLeadEmail(savedLead);
 
 			res.status(200).json(savedLead);
 		} catch (e) {
