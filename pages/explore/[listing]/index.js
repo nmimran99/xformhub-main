@@ -94,9 +94,17 @@ export default function Listing({ data }) {
 				<AddReviewModal trainer={trainerData} handleClose={handleClose} />
 			)}
 			{snackbar.result && (
-				<div className="h-16 w-full z-30 fixed bottom-0 left-0 bg-green-600 rounded-md border border-gray-300 text-center flex items-center justify-center text-sm">
+				<div
+					className={`h-16 w-full z-30 fixed bottom-0 left-0rounded-md border border-gray-300 text-center flex items-center justify-center text-sm ${
+						sucess.result === "success" ? "bg-green-600" : "bg-red-600"
+					}`}
+				>
 					<img
-						src="/icons/Done.svg"
+						src={
+							snackbar.result === "success"
+								? "/icons/Done.svg"
+								: "/icons/close.svg"
+						}
 						className="w-8 h-8 rounded-full bg-white bg-opacity-10 p-2 mr-3"
 					/>
 					<div className="">{snackbar.text}</div>
