@@ -9,6 +9,7 @@
     "build-css": "tailwindcss build styles/globals.css -o public/globals.css"
   },
   "dependencies": {
+    "@sendgrid/mail": "^7.6.0",
     "axios": "^0.24.0",
     "cookie-cutter": "^0.2.0",
     "mongoose": "^6.0.15",

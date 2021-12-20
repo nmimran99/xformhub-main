@@ -52,6 +52,7 @@ export default function AddReviewModal({
 	handleAddReview,
 	handleClose,
 }) {
+	const [isLoading, setIsLoading] = useState(false);
 	const [errors, setErrors] = useState([]);
 	const [details, setDetails] = useState({
 		firstName: "",
@@ -88,9 +89,15 @@ export default function AddReviewModal({
 	};
 
 	const handleSubmit = async () => {
+		setIsLoading(true);
 		setErrors([]);
+
 		let isValid = await validateFields();
-		if (!isValid) return;
+
+		if (!isValid) {
+			setIsLoading(false);
+			return;
+		}
 
 		const savedReview = await axios.post("/api/reviews/review", {
 			...details,
@@ -271,7 +278,7 @@ export default function AddReviewModal({
 								))}
 							</div>
 							<div className="text-xs text-gray-400 py-1">
-								Please choose up to 3 tags that describe {trainer.firstName} the
+								Please choose up to 5 tags that describe {trainer.firstName} the
 								best
 							</div>
 						</div>
@@ -284,6 +291,7 @@ export default function AddReviewModal({
 						closeText="Cancel"
 						toggle={handleClose}
 						handleSubmit={handleSubmit}
+						isLoading={isLoading}
 					/>
 				</div>
 			</div>

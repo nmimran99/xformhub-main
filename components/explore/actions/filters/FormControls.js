@@ -5,6 +5,7 @@ export default function FormControls({
 	handleSubmit,
 	applyText,
 	closeText,
+	isLoading,
 }) {
 	return (
 		<div
@@ -17,8 +18,13 @@ export default function FormControls({
 				<button
 					className="bg-blue-600 text-center w-1/2 pb-4 md:rounded-bl-xl md:pb-0"
 					onClick={handleSubmit}
+					disabled={isLoading}
 				>
-					{applyText}
+					{isLoading ? (
+						<div className="animate-pulse">Submitting...</div>
+					) : (
+						applyText
+					)}
 				</button>
 				<button
 					onClick={toggle}

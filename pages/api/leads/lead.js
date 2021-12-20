@@ -4,6 +4,9 @@ import Trainer from "../../../models/trainer";
 import dbConnect from "../../../utils/dbConnect";
 import { getFullName } from "../../../utils/helper";
 import { sendMail } from "../../../utils/mail/mail";
+import sgMail from "@sendgrid/mail";
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function handler(req, res) {
 	const { method } = req;
@@ -38,27 +41,30 @@ export default async function handler(req, res) {
 
 const sendLeadEmail = async (savedLead) => {
 	try {
-		const planDoc = await Plan.findOne({ _id: savedLead.planId }).lean();
-		const trainerDoc = await Trainer.findOne({ _id: savedLead.trainer }).lean();
+		const plan = await Plan.findOne({ _id: savedLead.planId }).lean();
+		const trainer = await Trainer.findOne({ _id: savedLead.trainer }).lean();
 
-		await sendMail({
-			from: "nmimran99@gmail.com",
-			to: "nmimran99@gmail.com",
-			subject: `XFormhub - ${savedLead.firstName} ${savedLead.lastName} `,
-			template: "leadEmail",
-			context: {
-				leadId: savedLead._id,
-				fullName: getFullName(savedLead),
-				phoneNumber: savedLead.phone,
-				email: savedLead.email,
-				expertise: savedLead.expertise.join(", "),
-				planId: savedLead.planId || "No Plan",
-				planName: planDoc?.title || "No Plan",
-				trainerId: savedLead.trainer || "Trainer details were not found",
-				trainerName:
-					getFullName(trainerDoc) || "Trainer details were not found",
+		const message = {
+			from: "support@xformhub.com",
+			to: "niv@xformhub.com",
+			templateId: "d-8bc2dd24b8a145de8ccd5cb381eaac3b",
+			dynamicTemplateData: {
+				lead_create_date: savedLead.createdAt,
+				lead_id: savedLead._id.toString(),
+				lead_name: getFullName(savedLead),
+				lead_email: savedLead.email,
+				lead_phone_number: savedLead.phone,
+				lead_expertise: savedLead.expertise.join(", "),
+				trainer_id: trainer._id.toString(),
+				trainer_name: getFullName(trainer),
+				trainer_link: `https://www.xformhub.com/explore/${trainer._id.toString()}`,
+				plan_id: plan?._id.toString() || "No Plan",
+				plan_name: plan?.title || "No Plan",
+				plan_price: plan?.price || "No Plan",
 			},
-		});
+		};
+
+		await sgMail.send(message);
 	} catch (e) {
 		console.log(e.message);
 	}

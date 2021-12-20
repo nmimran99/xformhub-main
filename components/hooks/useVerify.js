@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 export default (userId) => {
 	const [isVerified, setIsVerified] = useState(false);
 	const [user, setUser] = useState(null);
+	const [verifying, setVerifying] = useState(true);
 
 	useEffect(() => {
 		handleVerify();
@@ -14,10 +15,12 @@ export default (userId) => {
 		if (res.status === 200) {
 			setIsVerified(true);
 			setUser(res.data);
+			setVerifying(false);
 			return;
 		}
 		setIsVerified(false);
+		setVerifying(false);
 	};
 
-	return { isVerified, user };
+	return { isVerified, verifying, user };
 };

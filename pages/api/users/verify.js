@@ -3,6 +3,9 @@ import User from "../../../models/user";
 import dbConnect from "../../../utils/dbConnect";
 import { getFullName } from "../../../utils/helper";
 import { sendMail } from "../../../utils/mail/mail";
+import sgMail from "@sendgrid/mail";
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function handler(req, res) {
 	const { method } = req;
@@ -34,16 +37,18 @@ export default async function handler(req, res) {
 
 export const sendUserVerification = async (user) => {
 	try {
-		await sendMail({
-			from: "nmimran99@gmail.com",
+		const message = {
+			from: "support@xformhub.com",
 			to: user.email,
-			subject: `XFormhub - Email Verification `,
-			template: "emailVerification",
-			context: {
-				fullName: getFullName(user),
-				link: `https://www.xformhub.com/users/verify/${user._id}`,
+			templateId: "d-43d0533d6c794e568a586bd64926984d",
+			dynamicTemplateData: {
+				first_name: user.firstName,
+				link: `https://www.xformhub.com/users/verify/${user._id.toString()}`,
 			},
-		});
+		};
+
+		await sgMail.send(message);
+
 		return true;
 	} catch (e) {
 		console.log(e.message);
