@@ -7,8 +7,9 @@ export default function Quote({}) {
 			/>
 			<div className="px-4">
 				<div className="italic text-gray-500 text-xs">
-					"A suitable fitness professional can turn a life around. We are here
-					to ease the process of finding the one that will for our clients."
+					&quot;A suitable fitness professional can turn a life around. We are
+					here to ease the process of finding the one that will for our
+					clients.&quot;
 				</div>
 				<div className="text-xs border-t border-gray-300 py-2 mt-2 text-gray-600">
 					Niv Mimran, Founder
