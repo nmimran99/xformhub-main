@@ -175,7 +175,7 @@ export default function AddReviewModal({
 	return (
 		<Modal hideControls>
 			<div
-				className="w-screen h-screen bg-white bg-opacity-10 backdrop-filter backdrop-blur-3xl
+				className="w-screen h-screen bg-white bg-opacity-10 backdrop-filter backdrop-blur-3xl relative
 				md:w-3/4 md:h-5/6 md:border md:border-ray-300 md:rounded-xl md:my-auto
 				lg:w-1/2
 				xl:w-1/3
@@ -285,15 +285,13 @@ export default function AddReviewModal({
 					</div>
 				</div>
 
-				<div>
-					<FormControls
-						applyText="Submit Feedback"
-						closeText="Cancel"
-						toggle={handleClose}
-						handleSubmit={handleSubmit}
-						isLoading={isLoading}
-					/>
-				</div>
+				<FormControls
+					applyText="Submit Feedback"
+					closeText="Cancel"
+					toggle={handleClose}
+					handleSubmit={handleSubmit}
+					isLoading={isLoading}
+				/>
 			</div>
 		</Modal>
 	);
