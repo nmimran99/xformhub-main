@@ -9,7 +9,7 @@ export default function FormControls({
 }) {
 	return (
 		<div
-			className="w-screen h-16 fixed bottom-0 border-t border-white border-opacity-50
+			className="w-screen h-16 fixed bottom-0 border-t border-white border-opacity-50 z-10
 			md:w-full md:rounded-b-lxl md:h-12
 
 		"
